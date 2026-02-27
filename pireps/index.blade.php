@@ -3,7 +3,7 @@
 
 @section('css')
   @parent
-  <link href="{{ public_asset('/assets/css/page-overlays.css') }}" rel="stylesheet">
+  <link href="{{ public_asset('/assets/css/page-overlays.css') }}?v=20260227" rel="stylesheet">
   <style>
     .page-pireps h2 {
       letter-spacing: .03em;
