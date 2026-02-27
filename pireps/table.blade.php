@@ -1,7 +1,7 @@
-<div class="card">
+<div class="card glass-panel data-module-pireps">
   <div class="card-body">
-<div class="table-responsive">
-  <table class="table table-hover table-striped">
+<div class="table-responsive glass-table-wrapper">
+  <table class="table table-hover table-striped glass-table">
     <thead>
     <tr>
       <th>@sortablelink('flight_number', trans_choice('common.flight', 1))</th>
@@ -41,13 +41,13 @@
         </td>
         <td class="text-center">
           @php
-            $color = 'bg-info';
+            $color = 'status-badge status-badge--info';
             if($pirep->state === PirepState::PENDING) {
-                $color = 'bg-warning';
+                $color = 'status-badge status-badge--pending';
             } elseif ($pirep->state === PirepState::ACCEPTED) {
-                $color = 'bg-success';
+                $color = 'status-badge status-badge--accepted';
             } elseif ($pirep->state === PirepState::REJECTED) {
-                $color = 'bg-danger';
+                $color = 'status-badge status-badge--rejected';
             }
           @endphp
           <div class="badge {{ $color }}">{{ PirepState::label($pirep->state) }}</div>
@@ -73,7 +73,7 @@
     </tbody>
   </table>
 </div>
-<div class="row">
+<div class="row glass-footer mt-2">
   <div class="col-12 text-center">
     {{ $pireps->withQueryString()->links('pagination.bootstrap-5') }}
   </div>

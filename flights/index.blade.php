@@ -25,7 +25,7 @@
       @include('flights.table')
     </div>
     <div class="col-xl-3 d-none d-xl-block">
-      <div class="card">
+      <div class="card glass-panel data-module-flights-search">
         <div class="card-header bg-primary text-white">@lang('flights.search')</div>
         <div class="card-body">
           @include('flights.search')
@@ -33,7 +33,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row glass-footer mt-2">
     <div class="col-xl-9 col-lg-12 text-center">
       {{ $flights->withQueryString()->links('pagination.bootstrap-5') }}
     </div>
@@ -44,4 +44,3 @@
 @endsection
 
 @include('flights.scripts')
-
