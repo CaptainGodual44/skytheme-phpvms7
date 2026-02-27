@@ -3,14 +3,23 @@
 
 @section('css')
   @parent
-  <link href="{{ public_asset('/assets/css/page-overlays.css') }}?v=20260227" rel="stylesheet">
+  <link href="{{ public_asset('/assets/css/page-overlays.css') }}" rel="stylesheet">
   <style>
     .page-pireps h2 {
       letter-spacing: .03em;
     }
 
     .page-pireps .btn-info {
-      box-shadow: 0 8px 18px rgba(6, 126, 193, 0.22);
+      color: #151515;
+      border-color: rgba(196, 150, 47, 0.75);
+      background-color: #f1c75a;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    .page-pireps .btn-info:hover,
+    .page-pireps .btn-info:focus {
+      border-color: rgba(212, 168, 61, 0.9);
+      background-color: #ffd978;
     }
   </style>
 @endsection

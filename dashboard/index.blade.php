@@ -3,7 +3,7 @@
 
 @section('css')
     @parent
-    <link href="{{ public_asset('/assets/css/page-overlays.css') }}?v=20260227" rel="stylesheet">
+    <link href="{{ public_asset('/assets/css/page-overlays.css') }}" rel="stylesheet">
     <style>
         .page-dashboard .dashboard-box .header {
             letter-spacing: .04em;
@@ -11,6 +11,7 @@
 
         .page-dashboard .dashboard-box .description {
             opacity: .92;
+            color: #c3c3c3;
         }
     </style>
 @endsection

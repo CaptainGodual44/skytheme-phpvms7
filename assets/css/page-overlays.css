@@ -16,8 +16,8 @@
   z-index: -1;
   border-radius: 1rem;
   background:
-    radial-gradient(100% 80% at 0% 0%, rgba(6, 126, 193, 0.13), transparent 70%),
-    linear-gradient(160deg, rgba(255, 255, 255, 0.03), rgba(6, 126, 193, 0.02));
+    radial-gradient(120% 90% at 0% 0%, rgba(255, 198, 77, 0.16), transparent 68%),
+    linear-gradient(155deg, rgba(14, 14, 14, 0.48), rgba(44, 44, 44, 0.2));
   pointer-events: none;
 }
 
@@ -25,7 +25,30 @@
 .page-dashboard .card,
 .page-flights .card,
 .page-pireps .card {
+  border: 1px solid rgba(163, 163, 163, 0.24);
+  background: rgba(8, 8, 8, 0.55);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.38);
   backdrop-filter: blur(5px);
+}
+
+.page-home .glass-card--accent,
+.page-dashboard .glass-card--accent,
+.page-flights .glass-card--accent,
+.page-pireps .glass-card--accent,
+.page-home .glass-header,
+.page-dashboard .glass-header,
+.page-flights .glass-header,
+.page-pireps .glass-header {
+  color: #f3f3f3;
+  border-color: rgba(168, 168, 168, 0.3);
+  background: linear-gradient(145deg, rgba(12, 12, 12, 0.9), rgba(38, 38, 38, 0.72));
+}
+
+.page-home .glass-header,
+.page-dashboard .glass-header,
+.page-flights .glass-header,
+.page-pireps .glass-header {
+  box-shadow: inset 0 -1px 0 rgba(255, 198, 77, 0.24);
 }
 
 .page-dashboard {
@@ -41,4 +64,6 @@
 .page-flights h2,
 .page-pireps h2 {
   font-weight: 700;
+  color: #f1c75a;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
 }

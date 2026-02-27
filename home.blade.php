@@ -3,7 +3,7 @@
 
 @section('css')
   @parent
-  <link href="{{ public_asset('/assets/css/seven-dark-glass.css') }}?v=20260227" rel="stylesheet">
+  <link href="{{ public_asset('/assets/css/page-overlays.css') }}" rel="stylesheet">
   <style>
     .page-home .card.border-0 {
       background: transparent;

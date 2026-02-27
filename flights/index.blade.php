@@ -3,7 +3,7 @@
 
 @section('css')
   @parent
-  <link href="{{ public_asset('/assets/css/page-overlays.css') }}?v=20260227" rel="stylesheet">
+  <link href="{{ public_asset('/assets/css/page-overlays.css') }}" rel="stylesheet">
   <style>
     .page-flights h2 {
       letter-spacing: .02em;
@@ -13,6 +13,12 @@
       border-radius: .75rem;
       padding-top: .5rem;
       padding-bottom: .5rem;
+    }
+
+    .page-flights .card-header.bg-primary {
+      color: #f1c75a !important;
+      background: linear-gradient(145deg, rgba(20, 20, 20, 0.92), rgba(42, 42, 42, 0.78)) !important;
+      border-bottom-color: rgba(163, 163, 163, 0.25);
     }
   </style>
 @endsection
