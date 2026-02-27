@@ -11,9 +11,15 @@
     <script>
         // Check for saved user preference, if any, on initial load
         (function() {
-            if (localStorage.getItem('theme') === 'dark' || ((!localStorage.getItem('theme') || localStorage.getItem(
-                    'theme') === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.setAttribute('data-bs-theme', "dark")
+            const storedTheme = localStorage.getItem('theme');
+            if (!storedTheme) {
+                localStorage.setItem('theme', 'dark');
+                document.documentElement.setAttribute('data-bs-theme', 'dark');
+                return;
+            }
+
+            if (storedTheme === 'dark' || (storedTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.setAttribute('data-bs-theme', 'dark');
             }
         })();
     </script>
@@ -23,6 +29,10 @@
     <meta name="api-key" content="{!! Auth::check() ? Auth::user()->api_key : '' !!}">
     <meta name="csrf-token" content="{!! csrf_token() !!}">
     {{-- End the required lines block --}}
+
+    @php
+        $glass_css_version = @filemtime(__DIR__ . '/assets/css/seven-dark-glass.css') ?: time();
+    @endphp
 
     <link rel="shortcut icon" type="image/png" href="{{ public_asset('/assets/img/favicon.png') }}" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
@@ -34,7 +44,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
     <link href="{{ public_asset('/assets/vendor/tomselect/tom-select.bootstrap5.css') }}" rel="stylesheet">
-    <link href="{{ public_asset('/assets/css/seven-dark-glass.css') }}" rel="stylesheet">
+    <link href="{{ public_asset('/assets/css/seven-dark-glass.css') }}?v={{ $glass_css_version }}" rel="stylesheet">
 
     {{-- Start of the required files in the head block --}}
     {{-- <link href="{{ public_mix('/assets/global/css/vendor.css') }}" rel="stylesheet" /> --}}
