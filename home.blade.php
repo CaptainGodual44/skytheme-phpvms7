@@ -9,7 +9,7 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5" style="margin: -.5rem; /* m-n2 */">
           @foreach ($users as $user)
             <div class="p-2">
-              <div class="card bg-primary">
+              <div class="card glass-card glass-card--accent">
                 <div class="text-center pt-4">
                   <h3 class="mb-4">
                     <a href="{{ route('frontend.profile.show', [$user->id]) }}"
