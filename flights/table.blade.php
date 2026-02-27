@@ -1,6 +1,7 @@
-<div class="row">
+<div class="row glass-table-wrapper data-module-flights">
     <div class="col">
-        <table class="table table-sm table-borderless align-middle text-nowrap mb-2">
+        <table class="table table-sm table-borderless align-middle text-nowrap mb-2 glass-table">
+            <thead>
             <tr>
                 <th>@sortablelink('airline_id', __('common.airline'))</th>
                 <th>@sortablelink('flight_number', __('flights.flightnumber'))</th>
@@ -11,11 +12,12 @@
                 <th>@sortablelink('distance', 'Distance')</th>
                 <th>@sortablelink('flight_time', 'Flight Time')</th>
             </tr>
+            </thead>
         </table>
     </div>
 </div>
 @foreach ($flights as $flight)
-    <div class="card mb-3">
+    <div class="card mb-3 glass-panel glass-flight-card">
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-12">
@@ -98,7 +100,8 @@
                 </div>
             </div>
         </div>
-        <div class="card-footer">
+        <div class="card-footer glass-footer">
+            <div class="d-flex flex-wrap gap-2 action-button-group">
             <a class="btn btn-sm btn-primary" href="{{ route('frontend.flights.show', [$flight->id]) }}">
                 {{ __('flights.viewflight') }}
             </a>
@@ -141,6 +144,7 @@
                     {{ isset($saved[$flight->id]) ? __('flights.removebid') : __('flights.addbid') }}
                 </button>
             @endif
+        </div>
         </div>
     </div>
 

@@ -108,3 +108,94 @@ small.text-muted,
     border-color: var(--seven-border-accent) !important;
     box-shadow: 0 0 0 0.25rem rgba(6, 126, 193, 0.28) !important;
 }
+
+.glass-panel {
+    background: linear-gradient(145deg, var(--seven-surface-glass-1) 0%, var(--seven-surface-glass-2) 100%);
+    border: 1px solid var(--seven-border-glow);
+    box-shadow: var(--seven-shadow-1), var(--seven-shadow-inset);
+    backdrop-filter: blur(12px);
+}
+
+.glass-table {
+    margin-bottom: 0;
+    color: var(--seven-text-body);
+}
+
+.glass-table > :not(caption) > * > * {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(148, 182, 223, 0.22);
+}
+
+.glass-table thead th {
+    background: linear-gradient(180deg, rgba(140, 196, 255, 0.14), rgba(140, 196, 255, 0.04));
+    color: var(--seven-text-strong);
+    border-bottom: 1px solid rgba(140, 196, 255, 0.26);
+}
+
+.glass-table.table-striped > tbody > tr:nth-of-type(odd) > * {
+    background: rgba(126, 176, 233, 0.08);
+}
+
+.glass-table.table-hover > tbody > tr:hover > * {
+    background: rgba(94, 199, 255, 0.16);
+    color: var(--seven-text-strong);
+}
+
+[data-bs-theme="dark"] .glass-table > :not(caption) > * > * {
+    background: rgba(11, 19, 34, 0.48);
+    border-color: rgba(122, 170, 226, 0.25);
+}
+
+[data-bs-theme="dark"] .glass-table.table-striped > tbody > tr:nth-of-type(odd) > * {
+    background: rgba(27, 42, 72, 0.58);
+}
+
+[data-bs-theme="dark"] .glass-table.table-hover > tbody > tr:hover > * {
+    background: rgba(70, 119, 184, 0.52);
+}
+
+.glass-flight-card .card-footer,
+.glass-footer {
+    border-top: 1px solid var(--seven-border-glow);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01));
+}
+
+.action-button-group {
+    align-items: center;
+    row-gap: 0.5rem;
+}
+
+.action-button-group .btn {
+    border-width: 1px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.status-badge {
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border: 1px solid transparent;
+}
+
+.status-badge--info {
+    background: rgba(70, 189, 255, 0.2);
+    color: #9edfff;
+    border-color: rgba(70, 189, 255, 0.44);
+}
+
+.status-badge--pending {
+    background: rgba(255, 193, 7, 0.22);
+    color: #ffd970;
+    border-color: rgba(255, 193, 7, 0.44);
+}
+
+.status-badge--accepted {
+    background: rgba(25, 204, 122, 0.2);
+    color: #8dffc5;
+    border-color: rgba(25, 204, 122, 0.45);
+}
+
+.status-badge--rejected {
+    background: rgba(255, 82, 124, 0.2);
+    color: #ff9eb8;
+    border-color: rgba(255, 82, 124, 0.42);
+}
