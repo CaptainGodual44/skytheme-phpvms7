@@ -64,6 +64,40 @@
             background-color: #067ec1 !important;
             border-color: #067ec1 !important;
         }
+
+        .glass-card {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: linear-gradient(145deg, rgba(6, 126, 193, 0.08), rgba(6, 126, 193, 0.02));
+            box-shadow: 0 8px 20px rgba(13, 39, 80, 0.12);
+            backdrop-filter: blur(6px);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .glass-card--accent {
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.22);
+            background: linear-gradient(150deg, rgba(6, 126, 193, 0.96), rgba(8, 88, 156, 0.9));
+        }
+
+        .glass-header {
+            color: #fff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+            background: linear-gradient(120deg, rgba(6, 126, 193, 0.95), rgba(8, 88, 156, 0.88));
+        }
+
+        .glass-card:hover,
+        .glass-card:focus-within {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 30px rgba(13, 39, 80, 0.2);
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+
+        .glass-card a:focus-visible,
+        .glass-header a:focus-visible {
+            outline: 2px solid rgba(255, 255, 255, 0.8);
+            outline-offset: 2px;
+            border-radius: 0.25rem;
+        }
     </style>
 </head>
 
