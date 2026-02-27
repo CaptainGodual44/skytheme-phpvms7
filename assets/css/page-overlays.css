@@ -1,0 +1,44 @@
+.page-home,
+.page-dashboard,
+.page-flights,
+.page-pireps {
+  position: relative;
+  isolation: isolate;
+}
+
+.page-home::before,
+.page-dashboard::before,
+.page-flights::before,
+.page-pireps::before {
+  content: '';
+  position: absolute;
+  inset: -1rem;
+  z-index: -1;
+  border-radius: 1rem;
+  background:
+    radial-gradient(100% 80% at 0% 0%, rgba(6, 126, 193, 0.13), transparent 70%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.03), rgba(6, 126, 193, 0.02));
+  pointer-events: none;
+}
+
+.page-home .card,
+.page-dashboard .card,
+.page-flights .card,
+.page-pireps .card {
+  backdrop-filter: blur(5px);
+}
+
+.page-dashboard {
+  --page-density-gap: 1rem;
+}
+
+.page-dashboard .row {
+  row-gap: var(--page-density-gap);
+}
+
+.page-home h2,
+.page-dashboard h2,
+.page-flights h2,
+.page-pireps h2 {
+  font-weight: 700;
+}

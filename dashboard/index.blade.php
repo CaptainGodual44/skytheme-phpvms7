@@ -1,9 +1,24 @@
 @extends('app')
 @section('title', __('common.dashboard'))
 
+@section('css')
+    @parent
+    <link href="{{ public_asset('/assets/css/page-overlays.css') }}" rel="stylesheet">
+    <style>
+        .page-dashboard .dashboard-box .header {
+            letter-spacing: .04em;
+        }
+
+        .page-dashboard .dashboard-box .description {
+            opacity: .92;
+        }
+    </style>
+@endsection
+
 @section('content')
-    <div class="row">
-        <div class="col-md-8">
+    <div class="page-dashboard">
+        <div class="row">
+            <div class="col-md-8">
             @if (Auth::user()->state === \App\Models\Enums\UserState::ON_LEAVE)
                 <div class="row">
                     <div class="col-12">
@@ -68,39 +83,40 @@
 
             {{ Widget::latestNews(['count' => 5]) }}
 
-        </div>
-
-        {{-- Sidebar --}}
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-header glass-header">
-                    @lang('dashboard.weatherat', ['ICAO' => $current_airport])
-                </div>
-                <div class="card-body d-flex flex-column gap-4">
-                    {{ Widget::Weather(['icao' => $current_airport]) }}
-                </div>
             </div>
 
-            <div class="card mt-4">
-                <div class="card-header glass-header" role="tablist">
-                    @lang('dashboard.recentreports')
-                </div>
-                <div class="card-body">
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        {{ Widget::latestPireps(['count' => 5]) }}
+            {{-- Sidebar --}}
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header glass-header">
+                        @lang('dashboard.weatherat', ['ICAO' => $current_airport])
+                    </div>
+                    <div class="card-body d-flex flex-column gap-4">
+                        {{ Widget::Weather(['icao' => $current_airport]) }}
                     </div>
                 </div>
-            </div>
 
-            <div class="card mt-4">
-                <div class="card-header glass-header" role="tablist">
-                    @lang('common.newestpilots')
+                <div class="card mt-4">
+                    <div class="card-header glass-header" role="tablist">
+                        @lang('dashboard.recentreports')
+                    </div>
+                    <div class="card-body">
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            {{ Widget::latestPireps(['count' => 5]) }}
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        {{ Widget::latestPilots(['count' => 5]) }}
+
+                <div class="card mt-4">
+                    <div class="card-header glass-header" role="tablist">
+                        @lang('common.newestpilots')
+                    </div>
+                    <div class="card-body">
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            {{ Widget::latestPilots(['count' => 5]) }}
+                        </div>
                     </div>
                 </div>
             </div>
