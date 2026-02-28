@@ -1,0 +1,142 @@
+@section('scripts')
+  @if (setting('bids.block_aircraft', false))
+    <script>
+      $(document).ready(function() {
+        const bidModal = new bootstrap.Modal(document.getElementById('bidModal'));
+        let aircrafts = [{
+          id: 0,
+          text: 'Loading Aircrafts...'
+        }];
+        let sel = $('#aircraft_select');
+
+        $("button.save_flight").click(function(e) {
+          e.preventDefault();
+
+          const btn = $(this);
+          const class_name = btn.attr('x-saved-class'); // classname to use is set on the element
+          const flight_id = btn.attr('x-id');
+          const not_saved = btn.attr('x-not-saved-class');
+          $('#aircraft_select').attr('x-saved-class', class_name)
+          $('#aircraft_select').attr('x-id', flight_id)
+          $('#aircraft_select').attr('x-not-saved-class', not_saved)
+          if (!btn.hasClass(class_name)) {
+
+            $.ajax({
+              headers: {
+                'X-API-KEY': $('meta[name="api-key"]').attr('content')
+              },
+              url: '/api/flights/' + flight_id +
+                '/aircraft'
+            }).then((response) => {
+              console.log(response)
+              aircrafts = [];
+              const results = response.map(ac => {
+                const text =
+                  `[${ac.icao}] ${ac.registration} ${ac.registration !== ac.name ? ` ${ac.name}` : ''}`;
+
+                aircrafts.push({
+                  id: ac.id,
+                  text: text
+                })
+              });
+              $('#aircraft_select option').remove();
+              sel.select2({
+                dropdownParent: $('#bidModal'),
+                data: aircrafts
+              });
+              bidModal.show();
+            }).catch((error) => {
+              console.error(error)
+            });
+          } else {
+            phpvms.bids.removeBid(flight_id).then(() => {
+              console.log('successfully removed flight');
+              $('button.save_flight[x-id="' + flight_id + '"]').removeClass(class_name).addClass(not_saved).html(`<i class="bi bi-bookmark-plus-fill"></i>`);
+              $('span.flight_title[x-id="' + flight_id + '"]').html(``);
+              location.reload();
+            }).catch((error) => {
+              if (error.response && error.response.data)
+                alert(`Error removing bid: ${error.response.data.details}`)
+              else alert(`Error removing bid: ${error.message}`)
+            });
+          }
+        });
+
+
+        $('#with_aircraft').click(() => {
+          bidModal.hide();
+          const ac_id = $('#aircraft_select').val()
+          const flight_id = $('#aircraft_select').attr('x-id');
+          const class_name = $('#aircraft_select').attr('x-saved-class')
+          const not_saved = $('#aircraft_select').attr('x-not-saved-class')
+          phpvms.bids.addBid(flight_id, ac_id).then(() => {
+            console.log('successfully saved flight');
+            $('button.save_flight[x-id="' + flight_id + '"]').addClass(class_name).removeClass(not_saved).html(`<i class="bi bi-bookmark-x-fill"></i>`);
+            $('span.flight_title[x-id="' + flight_id + '"]').html(`<i class="bi bi-bookmark-fill"></i>`);
+            location.reload();
+          }).catch((error) => {
+            if (error.response && error.response.data)
+              alert(`Error adding bid: ${error.response.data.details}`)
+            else alert(`Error adding bid: ${error.message}`)
+          });
+
+        });
+
+        $('#without_aircraft').click(async () => {
+          bidModal.hide();
+          const flight_id = $('#aircraft_select').attr('x-id');
+          const class_name = $('#aircraft_select').attr('x-saved-class')
+          const not_saved = $('#aircraft_select').attr('x-not-saved-class')
+
+          phpvms.bids.addBid(flight_id).then(() => {
+            console.log('successfully saved flight');
+            $('button.save_flight[x-id="' + flight_id + '"]').addClass(class_name).removeClass(not_saved).html(`<i class="bi bi-bookmark-x-fill"></i>`);
+            $('span.flight_title[x-id="' + flight_id + '"]').html(`<i class="bi bi-bookmark-fill"></i>`);
+            location.reload();
+          }).catch((error) => {
+            if (error.response && error.response.data) alert(
+              `Error adding bid: ${error.response.data.details}`)
+            else alert(`Error adding bid: ${error.message}`)
+          });
+        });
+      });
+    </script>
+  @else
+    <script>
+      $(document).ready(function() {
+        $("button.save_flight").click(function(e) {
+          e.preventDefault();
+
+          const btn = $(this);
+          const class_name = btn.attr('x-saved-class'); // classname to use is set on the element
+          const flight_id = btn.attr('x-id');
+          const not_saved = btn.attr('x-not-saved-class');
+
+          if (!btn.hasClass(class_name)) {
+            phpvms.bids.addBid(flight_id).then(() => {
+              console.log('successfully saved flight');
+              btn.addClass(class_name).removeClass(not_saved).text("Remove Bid");
+              location.reload();
+            }).catch((error) => {
+              if (error.response && error.response.data)
+                alert(`Error adding bid: ${error.response.data.details}`)
+              else alert(`Error adding bid: ${error.message}`)
+            });
+          } else {
+            phpvms.bids.removeBid(flight_id).then(() => {
+              console.log('successfully removed flight');
+              btn.removeClass(class_name).addClass(not_saved).text("Add Bid");
+              location.reload();
+            }).catch((error) => {
+              if (error.response && error.response.data)
+                alert(`Error removing bid: ${error.response.data.details}`)
+              else alert(`Error removing bid: ${error.message}`)
+            });
+          }
+        });
+      });
+    </script>
+  @endif
+
+  @include('scripts.airport_search')
+@endsection
