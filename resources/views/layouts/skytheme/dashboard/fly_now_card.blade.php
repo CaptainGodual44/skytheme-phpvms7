@@ -2,7 +2,7 @@
 <div class="card">
   <div class="card-body">
     <div class="text-center">Welcome To</div>
-    <div class="text-center fs-4">{{ \App\Models\Airport::find($current_airport)->name }}</div>
+    <div class="text-center fs-4">{{ \App\Models\Airport::find($current_airport)->name ?? "NA"}}</div>
     <div class="d-grid gap-2">
       @if(check_module('CHJumpSeat') || check_module('CHJumpSeatPro'))
         <a href="{{ route('chjumpseat.create') }}" class="btn btn-primary">
