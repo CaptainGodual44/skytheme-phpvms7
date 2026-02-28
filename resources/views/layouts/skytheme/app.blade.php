@@ -27,6 +27,51 @@
   <link href="{{ asset('assets/apex/ch_apex.css') }}" rel="stylesheet">
 
   <style>
+
+
+    :root,
+    [data-bs-theme="light"],
+    [data-bs-theme="dark"] {
+      --bs-primary: #EB1616;
+      --bs-primary-rgb: 235, 22, 22;
+      --bs-link-color: #EB1616;
+      --bs-link-hover-color: #c91313;
+      --bs-primary-text-emphasis: #ff7a7a;
+      --bs-primary-bg-subtle: rgba(235, 22, 22, 0.15);
+      --bs-primary-border-subtle: rgba(235, 22, 22, 0.4);
+    }
+
+    .bg-primary,
+    .btn-primary,
+    .badge.bg-primary,
+    .border-primary {
+      background-color: #EB1616 !important;
+      border-color: #EB1616 !important;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus,
+    .btn-primary:active {
+      background-color: #c91313 !important;
+      border-color: #c91313 !important;
+    }
+
+    .btn-outline-primary {
+      color: #EB1616 !important;
+      border-color: #EB1616 !important;
+    }
+
+    .btn-outline-primary:hover,
+    .btn-outline-primary:focus,
+    .btn-outline-primary:active {
+      color: #fff !important;
+      background-color: #EB1616 !important;
+      border-color: #EB1616 !important;
+    }
+
+    .text-primary {
+      color: #EB1616 !important;
+    }
     body {
       font-family: "Open Sans", sans-serif;
       background: #000;
